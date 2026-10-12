@@ -16,6 +16,13 @@ export async function GET(request) {
 
     const response = await fetch(booksUrl, { cache: "no-store" });
     if (!response.ok) {
+      if (response.status === 429) {
+        return Response.json(
+          { error: "Google Books 검색 요청이 잠시 많습니다. 잠시 후 다시 시도해 주세요." },
+          { status: 429 },
+        );
+      }
+
       return Response.json(
         { error: "Google Books에서 책 정보를 가져오지 못했습니다." },
         { status: 502 },
