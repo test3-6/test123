@@ -6,10 +6,12 @@
 
 1. Node.js 20.9 이상을 설치합니다.
 2. `npm install`로 의존성을 설치합니다.
-3. `.env.example`을 복사해 `.env.local`을 만들고 Supabase 프로젝트 URL과 anon key를 입력합니다.
+3. `.env.example`을 복사해 `.env.local`을 만들고 Supabase 프로젝트 URL과 anon key를 입력합니다. Google Books API 키가 있다면 `GOOGLE_BOOKS_API_KEY`에도 입력합니다.
 4. `npm run dev`를 실행한 뒤 `http://localhost:3000`을 엽니다.
 
 Supabase 키는 소스 파일에 넣지 마세요. `.env.local`은 Git에 올라가지 않습니다. 브라우저에서 사용하는 키는 Supabase의 공개 anon key여야 하며, 서비스 역할 키(service role key)를 넣으면 안 됩니다.
+
+Google Books API 키는 서버에서만 사용하도록 `GOOGLE_BOOKS_API_KEY`라는 이름으로 설정합니다. 이 키에는 `NEXT_PUBLIC_` 접두사를 붙이지 마세요.
 
 ## Vercel 배포
 
@@ -17,6 +19,7 @@ Supabase 키는 소스 파일에 넣지 마세요. `.env.local`은 Git에 올라
 2. Vercel 프로젝트의 **Settings → Environment Variables**에서 다음 값을 Preview와 Production 환경에 등록합니다.
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `GOOGLE_BOOKS_API_KEY` (Google Books API 키가 있는 경우)
 3. Deploy를 실행합니다. 프레임워크는 Next.js로 자동 감지되며 별도의 빌드 설정은 필요하지 않습니다.
 4. 환경변수를 바꾼 뒤에는 새 배포를 실행해야 적용됩니다.
 
