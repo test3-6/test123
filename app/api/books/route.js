@@ -13,6 +13,9 @@ export async function GET(request) {
     booksUrl.searchParams.set("q", query);
     booksUrl.searchParams.set("maxResults", "24");
     booksUrl.searchParams.set("printType", "books");
+    if (process.env.GOOGLE_BOOKS_API_KEY) {
+      booksUrl.searchParams.set("key", process.env.GOOGLE_BOOKS_API_KEY);
+    }
 
     const response = await fetch(booksUrl, { cache: "no-store" });
     if (!response.ok) {
